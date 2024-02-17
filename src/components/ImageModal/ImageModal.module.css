@@ -1,0 +1,93 @@
+.background {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  aspect-ratio: 1/0.7;
+  height: 85%;
+  background-color: #222222;
+  border-radius: 7px;
+  overflow: hidden;
+  view-transition-name: photo;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 75%;
+
+  .image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .closeButton {
+    position: absolute;
+    padding: 3px;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: scale, opacity;
+    opacity: 0;
+    z-index: 1;
+
+    &:hover {
+      scale: 1.05;
+    }
+
+    &:active {
+      scale: 0.95;
+    }
+  }
+
+  &:hover .closeButton {
+    opacity: 1;
+  }
+}
+
+.description {
+  padding: 20px 20px 0 20px;
+}
+
+.by {
+  font-weight: 300;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: #05a081;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+  }
+}
+
+@keyframes grow {
+  from {
+    scale: 1;
+    opacity: 1;
+  }
+  to {
+    scale: 0.95;
+    opacity: 0;
+  }
+}
+
+::view-transition-old(photo) {
+  animation: 300ms grow;
+}
